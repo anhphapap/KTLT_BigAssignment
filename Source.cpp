@@ -342,6 +342,41 @@ void deleteProd()
     _getch();
 }
 
+void printDelete()
+{
+    cout << "BAN CO MUON XOA SAN PHAM NAY KHONG?\n";
+    cout << "1.XOA SAN PHAM\n";
+    cout << "2.QUAY LAI MENU\n";
+}
+
+void chooseDelete(json temp,int m)
+{
+    printDelete();
+    int n;
+    cout<<"\nMoi chon: ";
+    cin>>n;
+    switch(n)
+    {
+        case 1:
+        {
+            cout << "\nDA XOA THANH CONG SAN PHAM CO MA \"" << temp["Code"] << "\"!!\n";
+            m--;
+            ofstream foo("total.txt");
+            foo << m;
+            foo.close();
+            update();
+            outputEdit(temp);
+            cout << "\nGo phim bat ky de quay lai MENU...";
+            _getch();
+            break;
+        }
+        case 2:
+        {
+            break;
+        }
+    }
+}
+
 void findProd()
 {
     int n;
@@ -355,6 +390,7 @@ void findProd()
         cout << "\nMoi nhap MA SAN PHAM can tim: ";
         cin >> s;
         ifstream fii("in4.json");
+        ofstream fo("kho.json");
         json j, temp;
         for (int i = 0; i < n; i++)
         {
@@ -364,7 +400,10 @@ void findProd()
                 check = true;
                 temp = j;
             }
+            else
+                fo << j << endl;
         }
+        fo.close();
         fii.close();
         if (check == true)
         {
@@ -373,20 +412,23 @@ void findProd()
             cout << "Loai san pham: " << string(temp["Mod"]) << endl;
             cout << "Ma san pham: " << string(temp["Code"]) << endl;
             cout << "Ngay nhap: " << string(temp["Day"]) << endl;
-            cout << "Thoi gian: " << string(temp["Time"]) << endl;
+            cout << "Thoi gian: " << string(temp["Time"]) << endl <<endl <<endl;
+            chooseDelete(temp,n);
         }
         else
         {
             cout << "\nKHONG TIM THAY SAN PHAM CO MA \"" << s << "\" TRONG KHO!!\n";
+            cout << "\nGo phim bat ky de quay lai MENU...";
+            _getch();
         }
     }
     else
     {
         system("cls");
         cout << "\nDANH SACH KHO HIEN DANG TRONG !! VUI LONG NHAP THEM DON HANG DE SU DUNG TINH NANG!!\n";
+        cout << "\nGo phim bat ky de quay lai MENU...";
+        _getch();
     }
-    cout << "\nGo phim bat ky de quay lai MENU...";
-    _getch();
 }
 
 void output()

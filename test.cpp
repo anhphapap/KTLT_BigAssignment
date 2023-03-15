@@ -10,6 +10,93 @@
 using json=nlohmann::json;
 using namespace std;
 
+void printDelete()
+{
+    cout << "BAN CO MUON XOA SAN PHAM NAY KHONG?\n";
+    cout << "1.XOA SAN PHAM\n";
+    cout << "2.QUAY LAI MENU\n";
+}
+
+void chooseDelete()
+{
+    printDelete();
+    int n;
+    cout<<"Moi chon: ";
+    cin>>n;
+    switch(n)
+    {
+        case 1:
+        {
+            //cout << "\nDA XOA THANH CONG SAN PHAM CO MA \"" << s << "\"!!\n";
+            n--;
+            ofstream foo("total.txt");
+            foo << n;
+            foo.close();
+            // update();
+            // outputEdit(temp);
+            break;
+        }
+        case 2:
+        {
+            break;
+        }
+        case 3:
+        {
+            exit(1);
+            break;
+        }
+    }
+}
+
+void findProd()
+{
+    int n;
+    ifstream fi("total.txt");
+    fi >> n;
+    fi.close();
+    if(n!=0)
+    {
+        bool check = false;
+        string s;
+        cout << "\nMoi nhap MA SAN PHAM can tim: ";
+        cin >> s;
+        ifstream fii("in4.json");
+        json j, temp;
+        for (int i = 0; i < n; i++)
+        {
+            fii >> j;
+            if (j["Code"] == s)
+            {
+                check = true;
+                temp = j;
+            }
+        }
+        fii.close();
+        if (check == true)
+        {
+            cout << "\nDA TIM THAY SAN PHAM!!\n\n";
+            cout << "Ten san pham: " << string(temp["Prod"]) << endl;
+            cout << "Loai san pham: " << string(temp["Mod"]) << endl;
+            cout << "Ma san pham: " << string(temp["Code"]) << endl;
+            cout << "Ngay nhap: " << string(temp["Day"]) << endl;
+            cout << "Thoi gian: " << string(temp["Time"]) << endl;
+
+
+        }
+        else
+        {
+            cout << "\nKHONG TIM THAY SAN PHAM CO MA \"" << s << "\" TRONG KHO!!\n";
+        }
+    }
+    else
+    {
+        system("cls");
+        cout << "\nDANH SACH KHO HIEN DANG TRONG !! VUI LONG NHAP THEM DON HANG DE SU DUNG TINH NANG!!\n";
+    }
+    cout << "\nGo phim bat ky de quay lai MENU...";
+    _getch();
+}
+
 void printList()
 {
     system("cls");
@@ -50,11 +137,12 @@ void printList()
 
 int main()
 {
-    printList();
-    time_t now = time(0);
-    tm *ltm = localtime(&now);
-    string day = to_string(ltm->tm_mday)+"/"+to_string(ltm->tm_mon+1)+"/"+to_string(ltm->tm_year+1900);
-    string time = to_string(ltm->tm_hour) +":"+ to_string(ltm->tm_min) +":"+to_string(ltm->tm_sec);
-    cout<<day<<endl<<time;
+    // printList();
+    // time_t now = time(0);
+    // tm *ltm = localtime(&now);
+    // string day = to_string(ltm->tm_mday)+"/"+to_string(ltm->tm_mon+1)+"/"+to_string(ltm->tm_year+1900);
+    // string time = to_string(ltm->tm_hour) +":"+ to_string(ltm->tm_min) +":"+to_string(ltm->tm_sec);
+    // cout<<day<<endl<<time;
+    printDelete();
     return 0;
 }

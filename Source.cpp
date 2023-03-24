@@ -358,7 +358,7 @@ void chooseDelete(json temp,int m)
     {
         case 1:
         {
-            cout << "\nDA XOA THANH CONG SAN PHAM CO MA \"" << temp["Code"] << "\"!!\n";
+            cout << "\nDA XOA THANH CONG SAN PHAM CO MA " << temp["Code"]<< "!!\n";
             m--;
             ofstream foo("total.txt");
             foo << m;

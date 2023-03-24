@@ -13,14 +13,13 @@ using json = nlohmann::json;
 void printMenu()
 {
     system("cls");
-    cout << "===============================================MENU============================================\n";
+    cout << "======================================MENU====================================\n";
     cout << "1.NHAP DON HANG   ";
     cout << "2.TIM SAN PHAM   ";
-    cout << "3.XOA SAN PHAM   ";
-    cout << "4.XEM DANH SACH   ";
-    cout << "5.XUAT DON HANG   ";
-    cout << "6.THOAT\n";
-    cout << "===============================================MENU============================================\n";
+    cout << "3.XEM DANH SACH   ";
+    cout << "4.XUAT DON HANG   ";
+    cout << "5.THOAT\n";
+    cout << "======================================MENU====================================\n";
 }
 
 void printProducts()
@@ -535,22 +534,22 @@ void chooseMenu()
         findProd();
         break;
     }
+    // case 3:
+    // {
+    //     deleteProd();
+    //     break;
+    // }
     case 3:
-    {
-        deleteProd();
-        break;
-    }
-    case 4:
     {
         printList();
         break;
     }
-    case 5:
+    case 4:
     {
         output();
         break;
     }
-    case 6:
+    case 5:
     {
         exit(1);
         break;
